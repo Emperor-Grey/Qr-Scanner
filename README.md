@@ -15,7 +15,7 @@ QrScanner is an Android application that uses the device's camera to scan QR cod
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the repository: git clone https://github.com/Emperor-Grey/Qr-Scanner.git
 2. Open the project in Android Studio.
 
 3. Build and run the app on an Android device or emulator.
