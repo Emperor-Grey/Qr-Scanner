@@ -1,4 +1,4 @@
-# QrScanner
+# Qr Scanner
 
 QrScanner is an Android application that uses the device's camera to scan QR codes and perform actions based on the scanned data.
 
