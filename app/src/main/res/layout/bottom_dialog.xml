@@ -7,9 +7,10 @@
 
     <ImageView
         android:id="@+id/Close"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Image"
+        android:contentDescription="@string/image"
         android:src="@drawable/close" />
 
     <TextView
@@ -17,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Wifi Info" />
+        android:text="@string/wifi_info" />
 
     <TextView
         android:id="@+id/Text_Link"
@@ -26,7 +27,7 @@
         android:layout_below="@id/Txt_File"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Link" />
+        android:text="@string/link" />
 
     <Button
         android:id="@+id/Visit"
@@ -36,8 +37,8 @@
         android:layout_below="@id/Text_Link"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Visit"
+        android:text="@string/visit"
         android:textSize="18sp"
-        android:textColor="#0288D1"/>
+        android:textColor="#1587E6"/>
 
 </RelativeLayout>

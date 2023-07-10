@@ -22,8 +22,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -62,19 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
         analyzer = new MyImageAnalyzer(getSupportFragmentManager());
 
-        cameraProviderFuture.addListener(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 101);
-                    } else {
-                        ProcessCameraProvider processCameraProvider = cameraProviderFuture.get();
-                        bindPreview(processCameraProvider);
-                    }
-                } catch (ExecutionException | InterruptedException e) {
-                    e.printStackTrace();
+        cameraProviderFuture.addListener(() -> {
+            try {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 101);
+                } else {
+                    ProcessCameraProvider processCameraProvider = cameraProviderFuture.get();
+                    bindPreview(processCameraProvider);
                 }
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
             }
         }, ContextCompat.getMainExecutor(this));
     }
@@ -145,18 +140,8 @@ public class MainActivity extends AppCompatActivity {
                                 readerBarcodeData(barcodes);
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, "Failed to read the QR code", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnCompleteListener(new OnCompleteListener<List<Barcode>>() {
-                            @Override
-                            public void onComplete(@NonNull Task<List<Barcode>> task) {
-                                image.close();
-                            }
-                        });
+                        .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Failed to read the QR code", Toast.LENGTH_SHORT).show())
+                        .addOnCompleteListener(task -> image.close());
             }
         }
 

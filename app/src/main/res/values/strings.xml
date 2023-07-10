@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Qr Scanner</string>
+    <string name="visit">Visit</string>
+    <string name="link">Link</string>
+    <string name="wifi_info">Wifi Info</string>
+    <string name="image">Image</string>
 </resources>

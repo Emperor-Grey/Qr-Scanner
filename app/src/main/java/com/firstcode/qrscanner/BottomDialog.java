@@ -16,9 +16,6 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomDialog extends BottomSheetDialogFragment {
-    private TextView title, link;
-    private Button btn_visit;
-    private ImageView close;
     private String wifiInfo;
     private String fetchUrl;
 
@@ -27,10 +24,10 @@ public class BottomDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_dialog, container, false);
 
-        title = view.findViewById(R.id.Txt_File);
-        link = view.findViewById(R.id.Text_Link);
-        btn_visit = view.findViewById(R.id.Visit);
-        close = view.findViewById(R.id.Close);
+        TextView title = view.findViewById(R.id.Txt_File);
+        TextView link = view.findViewById(R.id.Text_Link);
+        Button btn_visit = view.findViewById(R.id.Visit);
+        ImageView close = view.findViewById(R.id.Close);
 
         title.setText(fetchUrl);
         link.setText(wifiInfo);
